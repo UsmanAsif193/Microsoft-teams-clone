@@ -8,6 +8,8 @@ const ChatFeed = (props) => {
     const {chats, activeChat, userName, messages} = props;
     const chat = chats && chats[activeChat];
 
+    console.log(chat)
+
     const renderMessages =() => {
         const keys = Object.keys(messages)
         return keys.map((key, index) => {
@@ -37,13 +39,13 @@ const ChatFeed = (props) => {
             <div className="chat-title-container">
                 <div className="chat-title">{chat.title}</div>
                 <div className="chat-subtitle">
-                    {chat.map((person) => ` ${person.person.username}`)}
+                    {chat.people.map((person) => ` ${person.person.username}`)}
                 </div>
             </div>
             {renderMessages()}
             <div style={{height: '100px'}} />
             <div className="message-form-container">
-                <MessageForm {...props} charId={activeChat} />
+                <MessageForm {...props} chatId={activeChat} />
             </div>
         </div>
     )
