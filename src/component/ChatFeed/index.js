@@ -8,31 +8,54 @@ const ChatFeed = (props) => {
     const { chats, activeChat, userName, messages } = props;
     const chat = chats && chats[activeChat];
 
-    console.log(chat)
+    const renderReadReciepts = ({ message, isMyMessage }) => {
+      return chat.people.map(
+        (person, index) =>
+          person.last_read === message?.id && (
+            <div
+              key={`read_${index}`}
+              classname="read-receipt"
+              style={{
+                float: isMyMessage ? "right" : "left",
+                backgroundImage: `url(${person?.person?.avatar})`,
+              }}
+            />
+          )
+      );
+    };
 
-    const renderMessages =() => {
-        const keys = Object.keys(messages)
-        return keys.map((key, index) => {
-            const message = messages[key];
-            const lastMessagekey = index === 0 ? null : keys[index - 1];
-            const isMyMessage = userName === message.sender.username;
+    const renderMessages = () => {
+      const keys = Object.keys(messages);
+      return keys.map((key, index) => {
+        const message = messages[key];
+        const lastMessagekey = index === 0 ? null : keys[index - 1];
+        const isMyMessage = userName === message.sender.username;
 
-            return(
-                <div key={`msg_${index}`} style={{width: '100%'}}>
-                    <div className="message-block">
-                        {
-                            isMyMessage 
-                            ? <MyMessage message={message} />
-                            : <TheirMessage message={message} lastMessage={messages[lastMessagekey]}/>
-                        }
-                    </div>
-                    <div className="read-receipts" style={{marginRight: isMyMessage ? '18px' : '0px', marginLeft: isMyMessage ? '0x' : '68px'}}>
-                    read-receipts
-                    </div>
-                </div>
-            )
-        } )
-    }
+        return (
+          <div key={`msg_${index}`} style={{ width: "100%" }}>
+            <div className="message-block">
+              {isMyMessage ? (
+                <MyMessage message={message} />
+              ) : (
+                <TheirMessage
+                  message={message}
+                  lastMessage={messages[lastMessagekey]}
+                />
+              )}
+            </div>
+            <div
+              className="read-receipts"
+              style={{
+                marginRight: isMyMessage ? "18px" : "0px",
+                marginLeft: isMyMessage ? "0x" : "68px",
+              }}
+            >
+              {renderReadReciepts(isMyMessage, message)}
+            </div>
+          </div>
+        );
+      });
+    };
     if(!chat) return 'Loading...'
     return (
         <div className="chat-feed">
