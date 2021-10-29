@@ -5,7 +5,7 @@ import MessageForm from '../MessageForm'
 import TheirMessage from '../TheirMessage'
 
 const ChatFeed = (props) => {
-    const {chats, activeChat, userName, messages} = props;
+    const { chats, activeChat, userName, messages } = props;
     const chat = chats && chats[activeChat];
 
     console.log(chat)
