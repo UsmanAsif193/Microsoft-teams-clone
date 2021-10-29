@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const LoginForm = ({ userName, setUserName, password, setPassword }) => {
+const LoginForm = () => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -15,7 +17,8 @@ const LoginForm = ({ userName, setUserName, password, setPassword }) => {
       await axios.get("https://api.chatengine.io/chats", {
         headers: authObject,
       });
-      localStorage.setItem("userName", "Logged in");
+      localStorage.setItem("userName", userName);
+      localStorage.setItem("password", password);
 
       window.location.reload();
     } catch (error) {
