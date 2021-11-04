@@ -4,6 +4,7 @@ import { ChatEngine } from "react-chat-engine";
 
 import ChatFeed from "./component/ChatFeed";
 import LoginForm from "./component/LoginForm";
+import LogOut from "./component/Logout";
 
 const App = () => {
   if (!localStorage.getItem("userName")) return <LoginForm />;
@@ -14,6 +15,7 @@ const App = () => {
       userName={localStorage.getItem("userName")}
       userSecret={localStorage.getItem("password")}
       renderChatFeed={(chatAppProps) => <ChatFeed {...chatAppProps} />}
+      renderChatSettings={() => <LogOut />}
     />
   );
 };

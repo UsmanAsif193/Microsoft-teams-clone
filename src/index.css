@@ -321,3 +321,16 @@
 .sample-login span{
   text-align: end;
 }
+
+/* Logout Button */
+.logout-button{
+  width: 70%;
+  padding: 5% 0;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10%;
+  margin-left: 18%;
+}
