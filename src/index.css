@@ -233,6 +233,11 @@
   justify-content: center;
   align-items: center;
 }
+@media screen and (max-width: 720px){
+  .wrapper{
+    flex-direction: column;
+  }
+}
 
 .input {
   color: #333;
@@ -303,4 +308,16 @@
   color: white;
   text-align: center;
   margin-top: 20px;
+}
+
+.sample-login{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.sample-login span{
+  text-align: end;
 }

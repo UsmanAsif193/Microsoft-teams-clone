@@ -55,6 +55,15 @@ const LoginForm = () => {
           <h2 className="error">{error}</h2>
         </form>
       </div>
+      <div className="sample-login">
+        <h2>You can Login as Guest</h2>
+        <br />
+        <span>User: Guest1</span>
+        <span>Pass: 123</span>
+        <br />
+        <span>User: Guest1</span>
+        <span>Pass: 123</span>
+      </div>
     </div>
   );
 };
